@@ -15,28 +15,37 @@ const checkAllInputs = (groupInputs) => {
     let filledInputs = 0;
     for(let i = 0; i < groupInputs.length; i++) {
         if(groupInputs[i].value == "" || groupInputs[i] == "0") {
-            deactivateBtn()
+            deactivateCalculateBtn();
             console.log(groupInputs[i].value)
         } else {
+            activateResetBtn();
             filledInputs++
         }
     }
     if(filledInputs === paramInputs) {
-        activateBtn();
-    } else {
-        deactivateBtn();
+        activateCalculateBtn();
+    } else if(filledInputs === 0) {
+        deactivateResetBtn();
+    }
+    else {
+        deactivateCalculateBtn();
     }
 };
 
-
-const deactivateBtn = () => {
-    calculateBtn.disabled = true;
+const deactivateResetBtn = () => {
     formResetBtn.disabled = true;
 };
 
-const activateBtn = () => {
+const activateResetBtn = () => {
+    formResetBtn.disabled = false;
+};
+
+const deactivateCalculateBtn = () => {
+    calculateBtn.disabled = true;
+};
+
+const activateCalculateBtn = () => {
    calculateBtn.disabled = false;
-   formResetBtn.disabled = false;
 };
 
 //Events Listeners
