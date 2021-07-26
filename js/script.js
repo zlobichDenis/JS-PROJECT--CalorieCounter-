@@ -48,6 +48,10 @@ const activateCalculateBtn = () => {
    calculateBtn.disabled = false;
 };
 
+const hideCounter = () => {
+    counterResult.classList.add('counter__result--hidden');
+};
+
 const getCoefOfActivity = (userActivity) => {
     if(userActivity === 'min') {
         return 1.2
@@ -102,6 +106,7 @@ groupInputs.forEach((input) => {
     })
 })
 calculateBtn.addEventListener('click', calculateProgramm);
+formResetBtn.addEventListener('click', hideCounter);
 
 
 
