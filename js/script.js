@@ -48,6 +48,20 @@ const activateCalculateBtn = () => {
    calculateBtn.disabled = false;
 };
 
+const getCoefOfActivity = (userActivity) => {
+    if(userActivity === 'min') {
+        return 1.2
+    } else if(userActivity === 'low') {
+        return 1.375
+    } else if(userActivity === 'medium') {
+        return 1.55
+    } else if(userActivity === 'high') {
+        return 1.725
+    } else {
+        1.9
+    }
+};
+
 const calculateProgramm = (evt) => { // N = (10 × вес в килограммах) + (6,25 × рост в сантиметрах) − (5 × возраст в годах) − 161
     evt.preventDefault();
     const userSex = sexSwitcher.querySelector('.switcher__item input[type="radio"]:checked').getAttribute('value');
@@ -58,17 +72,25 @@ const calculateProgramm = (evt) => { // N = (10 × вес в килограмм�
     counterResult.classList.remove('counter__result--hidden');
 
     const normCalories = document.querySelector('#calories-norm');
-    const minCalories = document.querySelector('#calories-norm');
-    const maxCalories = document.querySelector('#calories-norm');
+    const minCalories = document.querySelector('#calories-minimal');
+    const maxCalories = document.querySelector('#calories-maximal');
+
+    const coefActivity = getCoefOfActivity(userActivity);
 
     //Calculate norm calories
     if(userSex === 'male') {
-        const result = `${(10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 161}`;
-        normCalories.textContent = result;
+        const result = `${((10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 161) * coefActivity}`;
+        normCalories.textContent = parseInt(result);
+        minCalories.textContent = (result / 1.15).toFixed(0);
+        maxCalories.textContent = (result * 1.15).toFixed(0);
     } else {
-        const result = `${(10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 5}`;
-        normCalories.textContent = result;
+        const result = `${((10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 5) * coefActivity}`;
+        normCalories.textContent = parseInt(result);
+        minCalories.textContent = (result / 1.15).toFixed(0);
+        maxCalories.textContent = (result * 1.15).toFixed(0);
     }
+
+    // Calculate min calories
 
     console.log(userSex,userAge, userActivity, userWeight, userHeight );
 };
