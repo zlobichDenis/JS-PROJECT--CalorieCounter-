@@ -50,6 +50,7 @@ const activateCalculateBtn = () => {
 
 const hideCounter = () => {
     counterResult.classList.add('counter__result--hidden');
+    deactivateCalculateBtn();
 };
 
 const getCoefOfActivity = (userActivity) => {
