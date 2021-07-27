@@ -63,7 +63,7 @@ const getCoefOfActivity = (userActivity) => {
     } else if(userActivity === 'high') {
         return 1.725
     } else {
-        1.9
+        return 1.9
     }
 };
 
