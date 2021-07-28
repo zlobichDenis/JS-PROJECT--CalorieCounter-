@@ -84,13 +84,13 @@ const calculateProgramm = (evt) => { // N = (10 × вес в килограмм�
     if(userSex === 'male') {
         const result = `${((10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 161) * coefActivity}`;
         normCalories.textContent = parseInt(result);
-        minCalories.textContent = (result / 1.15).toFixed(0);
-        maxCalories.textContent = (result * 1.15).toFixed(0);
+        minCalories.textContent = parseInt(result / 1.15);
+        maxCalories.textContent = parseInt(result * 1.15);
     } else {
         const result = `${((10 * userWeight) + (6.25 * userHeight) - (5 * userAge) + 5) * coefActivity}`;
         normCalories.textContent = parseInt(result);
-        minCalories.textContent = (result / 1.15).toFixed(0);
-        maxCalories.textContent = (result * 1.15).toFixed(0);
+        minCalories.textContent = parseInt(result / 1.15);
+        maxCalories.textContent = parseInt(result * 1.15);
     }
 
     // Calculate min calories
