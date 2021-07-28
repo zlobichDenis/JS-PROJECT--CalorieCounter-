@@ -10,6 +10,14 @@ const formResetBtn = document.querySelector('.form__reset-button');
 
 const counterResult = document.querySelector('.counter__result');
 
+const coefsActivity = {
+    min: 1.2,
+    low: 1.375,
+    medium: 1.55,
+    high: 1.1725,
+    max: 1.9,
+};
+
 //Functions
 const checkAllInputs = (groupInputs) => {
     const paramInputs = 3;
@@ -54,17 +62,7 @@ const hideCounter = () => {
 };
 
 const getCoefOfActivity = (userActivity) => {
-    if(userActivity === 'min') {
-        return 1.2
-    } else if(userActivity === 'low') {
-        return 1.375
-    } else if(userActivity === 'medium') {
-        return 1.55
-    } else if(userActivity === 'high') {
-        return 1.725
-    } else {
-        return 1.9
-    }
+    return coefsActivity[userActivity];
 };
 
 const calculateProgramm = (evt) => { // N = (10 × вес в килограммах) + (6,25 × рост в сантиметрах) − (5 × возраст в годах) − 161
